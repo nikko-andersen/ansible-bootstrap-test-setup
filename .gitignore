@@ -1,0 +1,32 @@
+# Ignore vagrant build directory
+vagrant-setup/vagrant/.vagrant/
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore .env files
+.env
+
+# Ignore log files
+*.log
+
+# Ignore compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore build output directories
+/build/
+/dist/
+/out/
+
+# Ignore IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
