@@ -43,3 +43,15 @@ TODO: jeg har lavet SSH til docker containeren med simones password, hvordan få
  - brug vagrant til at lave et setup som Jay; flere servere, brug template files som i eksemplet
    - brug evt tmux
  - kig på openstack
+
+
+
+Vagrant setup:
+
+vagrant up        (starts the vms)
+vagrant ssh web   (ssh into vm and run: sudo useradd -m nikko -> then run: sudo passwd nikko )
+now you can run ssh ip_of_vm
+copy ansible key to vms:
+ssh-copy-id -i ~/.ssh/ansible.pub 192.168.56.3
+Now you can ssh to the vms with:
+ssh -i ~/.ssh/ansible 192.168.56.3
