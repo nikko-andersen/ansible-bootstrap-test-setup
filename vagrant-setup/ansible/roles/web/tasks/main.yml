@@ -1,0 +1,23 @@
+- name: install apache for Ubuntu
+  tags: apache,apache2
+  apt:
+    name:
+      - "{{ apache_package_name }}"
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: start and enable apache service
+  tags: apache,apache2
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes
+
+- name: copy default html file for site
+  tags: apache,apache2,php
+  copy:
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644
