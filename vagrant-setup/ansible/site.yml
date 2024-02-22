@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+    - name: update repo cache (Ubuntu)
+      tags: allways
+      apt:
+        update_cache: yes
+      changed_when: false
+      when: ansible_distribution == "Ubuntu"
+

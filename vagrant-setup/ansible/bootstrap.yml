@@ -1,0 +1,37 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+    - name: install updates (Ubuntu)
+      tags: allways
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+
+- hosts: all
+  become: true
+  tasks:
+
+    - name: create trinity user
+      tags: allways
+      user: 
+        name: trinity
+        groups: root
+    
+    - name: add ssh key for trinity
+      tags: allways
+      authorized_key:
+        user: trinity
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILImTDW2gqPYZfZdMOnwJhJwQMzhiOeirOzm5tfpp3KU nikko@nikko"
+        
+    - name: add sudoers file for trinity
+      tags: allways
+      copy:
+        src: sudoer_trinity
+        dest: /etc/sudoers.d/trinity
+        owner: root
+        group: root
+        mode: 0440

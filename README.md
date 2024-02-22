@@ -26,9 +26,13 @@ set password for nikko:
 passwd nikko
 log ind with ssh with the password
 copy and install an ssh key for the user to the server:
-ssh-copy-id -i ~/.ssh/id_ed25519.pub 172.17.0.2
+ssh-copy-id -i ~/.ssh/id_ed25519.pub 192.168.56.2
 this copies the key to the users ~/.ssh/authorized_keys file (creates the dir if not exists)
 this can also be done with scp
+
+give a user sudo rights:
+usermod -aG sudo username
+test it out with: sudo whoami
 
 Ad hoc test command:
 ansible all --key-file ~/.ssh/ansible -i inventory -m ping
@@ -36,7 +40,7 @@ And with the cfg and inventory file
 ansible all -m ping
 
 Command for running the bootstrap ansible script:
-
+ansible-playbook --ask-become-pass bootstrap.yml
 
 TODO: jeg har lavet SSH til docker containeren med simones password, hvordan får jeg det sat op med en key file, se videor.
  - basic test setup med docker containeren
